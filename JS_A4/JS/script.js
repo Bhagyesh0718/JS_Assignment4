@@ -1,21 +1,25 @@
 const apiKey = "863ba49fd3574cd78f332016233110"; // API key
         const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Barrie`; // For Barrie Location
         
-        // Fetch weather data from API
+        function showInfo() {
+            var information = "Name : Bhagyesh Kachhiya | Student Id : 200556134";
+            document.getElementById("info-container").innerHTML = information;
+        }
+        // Fetching weather data from API
         fetch(apiUrl)
             .then((response) => {
-                // Verify if the response is successful
+                // Verifying if the response is successful
                 if (!response.ok) {
                     throw new Error("The network did not respond satisfactorily.");
                 }
                 return response.json();
             })
             .then((data) => {
-                // Choose all elements that have the class weatherInfo
+                // Choosing all elements that have the class weatherInfo
                 const weatherInfoElements =
                     document.querySelectorAll(".weatherInfo");
 
-                // Gather the important details from the JSON response.
+                // Gathering the important details from the JSON response.
                 const location = data.location.name;
                 const temperature = data.current.temp_c;
                 const weatherDescription = data.current.condition.text;
